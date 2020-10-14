@@ -80,6 +80,7 @@ void draw()
 
   fill(255, 0, 0, 200); // set fill color to translucent red
   ellipse(mouseX, mouseY, 20, 20); //draw user cursor as a circle with a diameter of 20
+  
 }
 
 void mousePressed() // test to see if hit was in target!
@@ -132,6 +133,10 @@ void drawButton(int i)
 
   if (trials.get(trialNum) == i) // see if current button is the target
     fill(0, 255, 255); // if so, fill cyan
+  else if (mouseX >= bounds.x && mouseX <= (bounds.x + bounds.width) && mouseY >= bounds.y && mouseY <= (bounds.y + bounds.height)) //see if mouse hovering over rectangle
+    {
+      fill(255,255,0); //if so, fill yello
+    }
   else
     fill(200); // if not, fill gray
 
