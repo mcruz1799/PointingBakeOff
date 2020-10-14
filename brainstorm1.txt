@@ -1,0 +1,32 @@
+Takes awhile to look for next square
+
+Next next square lighter blue so user can plan out clicks (allowed)
+Large arrows to point to next square (allowed)
+Make arrow pointing from current location to the next square (allowed)
+Make cursor faster when it’s on the arrow
+
+User is not sure whether cursor is in square
+
+Make dot smaller so user can see whether its in target square
+Make another object to make it clear which one is selected
+Change color when mouse hovers in it
+Say whether user hit or missed
+Flash green or red? 
+Change cursor when it moves over the target square
+
+
+Cursor overshoots
+
+Stop mouse if it overshoots
+Make mouse speed slower
+Snap to center of square (allowed)
+Snap to center when mouse stops
+Make button on keyboard to snap to nearest square
+
+
+General Speed
+
+Make pointer faster
+Make pointer faster on the background only
+Press spacebar to click
+One hand on the trackpad, one hand on the keyboard
