@@ -1,8 +1,10 @@
 import java.awt.AWTException;
 import java.awt.Rectangle;
 import java.awt.Robot;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JFrame;
 import processing.core.PApplet;
 
 //when in doubt, consult the Processsing reference: https://processing.org/reference/
@@ -17,6 +19,7 @@ int finishTime = 0; //records the time of the final click
 int hits = 0; //number of successful clicks
 int misses = 0; //number of missed clicks
 Robot robot; //initalized in setup 
+Rectangle window;
 
 int numRepeats = 1; //sets the number of times each button repeats in the test
 
@@ -55,7 +58,16 @@ void setup()
 void draw()
 {
   background(0); //set background to black
-
+  
+  if (millis() - lastMoved > 2000) {
+    window = frame.getBounds();
+    robot.mouseMove(
+      window.x + nearestButtonCenter(mouseX),
+      window.y + nearestButtonCenter(mouseY)
+      );
+  }
+  //robot.mouseMove(window.x + width/2,window.y + height/2);
+  
   if (trialNum >= trials.size()) //check to see if test is over
   {
     float timeTaken = (finishTime-startTime) / 1000f;
@@ -80,6 +92,7 @@ void draw()
 
   fill(255, 0, 0, 200); // set fill color to translucent red
   ellipse(mouseX, mouseY, 20, 20); //draw user cursor as a circle with a diameter of 20
+  
 }
 
 void mousePressed() // test to see if hit was in target!
@@ -138,8 +151,10 @@ void drawButton(int i)
   rect(bounds.x, bounds.y, bounds.width, bounds.height); //draw button
 }
 
+int lastMoved = millis();
 void mouseMoved()
 {
+   lastMoved = millis();
    //can do stuff everytime the mouse is moved (i.e., not clicked)
    //https://processing.org/reference/mouseMoved_.html
 }
@@ -155,4 +170,10 @@ void keyPressed()
   //can use the keyboard if you wish
   //https://processing.org/reference/keyTyped_.html
   //https://processing.org/reference/keyCode.html
+}
+
+int nearestButtonCenter(int coord) {
+  int multiple = coord - margin - (buttonSize / 2);
+  int buttonIndex = constrain(Math.round((float)multiple / (padding + buttonSize)), 0, 3);
+  return buttonIndex * (padding + buttonSize) + margin + (buttonSize / 2);
 }
