@@ -152,6 +152,8 @@ void mouseDragged()
 
 void keyPressed() 
 {
+  if (key == ' ');
+   mousePressed();
   //can use the keyboard if you wish
   //https://processing.org/reference/keyTyped_.html
   //https://processing.org/reference/keyCode.html
