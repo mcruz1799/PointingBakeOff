@@ -83,6 +83,10 @@ void draw()
   stroke(0, 130, 130);
   strokeWeight(5);
   line(mouseX,mouseY,bounds.x + bounds.width/2,bounds.y + bounds.height/2);
+  if (trialNum < trials.size() - 1) {
+    Rectangle bounds2 = getButtonLocation(trials.get(trialNum+1));
+    line(bounds2.x + bounds2.width/2,bounds2.y + bounds2.height/2,bounds.x + bounds.width/2,bounds.y + bounds.height/2);
+  }
   stroke(0);
 }
 
