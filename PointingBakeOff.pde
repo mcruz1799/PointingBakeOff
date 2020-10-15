@@ -133,7 +133,7 @@ void drawButton(int i)
   if (trials.get(trialNum) == i) // see if current button is the target
     fill(0, 255, 255); // if so, fill cyan
   else if (trialNum < trials.size() - 1 && trials.get(trialNum+1) == i)
-    fill(0, 123, 123);
+    fill(103, 137, 138);
   else
     fill(200); // if not, fill gray
 
