@@ -55,7 +55,6 @@ void setup()
 void draw()
 {
   background(0); //set background to black
-
   if (trialNum >= trials.size()) //check to see if test is over
   {
     float timeTaken = (finishTime-startTime) / 1000f;
@@ -80,6 +79,16 @@ void draw()
 
   fill(255, 0, 0, 200); // set fill color to translucent red
   ellipse(mouseX, mouseY, 20, 20); //draw user cursor as a circle with a diameter of 20
+  Rectangle bounds = getButtonLocation(trials.get(trialNum));
+  strokeWeight(5);
+  if (trialNum < trials.size() - 1) {
+    stroke(103, 137, 138);
+    Rectangle bounds2 = getButtonLocation(trials.get(trialNum+1));
+    line(bounds2.x + bounds2.width/2,bounds2.y + bounds2.height/2,bounds.x + bounds.width/2,bounds.y + bounds.height/2);
+  }
+  stroke(0, 255, 255);
+  line(mouseX,mouseY,bounds.x + bounds.width/2,bounds.y + bounds.height/2);
+  stroke(0);
 }
 
 void mousePressed() // test to see if hit was in target!
