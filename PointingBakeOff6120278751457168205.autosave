@@ -134,8 +134,6 @@ void drawButton(int i)
 
   if (trials.get(trialNum) == i) // see if current button is the target
     fill(0, 255, 255); // if so, fill cyan
-  else if (trialNum < trials.size() - 1 && trials.get(trialNum+1) == i)
-    fill(0, 123, 123);
   else
     fill(200); // if not, fill gray
 
@@ -156,8 +154,6 @@ void mouseDragged()
 
 void keyPressed() 
 {
-  if (key == ' ');
-   mousePressed();
   //can use the keyboard if you wish
   //https://processing.org/reference/keyTyped_.html
   //https://processing.org/reference/keyCode.html
