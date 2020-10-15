@@ -139,7 +139,10 @@ void drawButton(int i)
 {
   Rectangle bounds = getButtonLocation(i);
 
-  if (trials.get(trialNum) == i) // see if current button is the target
+  
+  if (mouseX >= bounds.x && mouseX <= (bounds.x + bounds.width) && mouseY >= bounds.y && mouseY <= (bounds.y + bounds.height)) //see if mouse hovering over rectangle
+      fill(255,255,0); //if so, fill yellow
+  else if (trials.get(trialNum) == i) // see if current button is the target
     fill(0, 255, 255); // if so, fill cyan
   else if (trialNum < trials.size() - 1 && trials.get(trialNum+1) == i)
     fill(103, 137, 138);
