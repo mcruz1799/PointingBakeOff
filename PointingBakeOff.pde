@@ -88,7 +88,7 @@ void draw()
   }
   stroke(0, 255, 255);
   line(mouseX,mouseY,bounds.x + bounds.width/2,bounds.y + bounds.height/2);
-  stroke(0);
+  strokeWeight(0);
 }
 
 void mousePressed() // test to see if hit was in target!
