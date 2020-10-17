@@ -166,9 +166,18 @@ void mouseDragged()
 
 void keyPressed() 
 {
-  if (key == ' ');
-   mousePressed();
+  if (key == ' ') {
+    mouseX = nearestButtonCenter(mouseX);
+    mouseY = nearestButtonCenter(mouseY);
+    mousePressed();
+  }
   //can use the keyboard if you wish
   //https://processing.org/reference/keyTyped_.html
   //https://processing.org/reference/keyCode.html
+}
+
+int nearestButtonCenter(int coord) {
+  int multiple = coord - margin - (buttonSize / 2);
+  int buttonIndex = constrain(Math.round((float)multiple / (padding + buttonSize)), 0, 3);
+  return buttonIndex * (padding + buttonSize) + margin + (buttonSize / 2);
 }
