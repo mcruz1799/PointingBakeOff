@@ -93,6 +93,8 @@ void draw()
 
 void mousePressed() // test to see if hit was in target!
 {
+  mouseX = nearestButtonCenter(mouseX);
+  mouseY = nearestButtonCenter(mouseY);
   if (trialNum >= trials.size()) //if task is over, just return
     return;
 
@@ -167,8 +169,6 @@ void mouseDragged()
 void keyPressed() 
 {
   if (key == ' ') {
-    mouseX = nearestButtonCenter(mouseX);
-    mouseY = nearestButtonCenter(mouseY);
     mousePressed();
   }
   //can use the keyboard if you wish
