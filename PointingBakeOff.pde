@@ -142,7 +142,7 @@ void drawButton(int i)
   Rectangle bounds = getButtonLocation(i);
 
   
-  if (mouseX >= bounds.x && mouseX <= (bounds.x + bounds.width) && mouseY >= bounds.y && mouseY <= (bounds.y + bounds.height)) //see if mouse hovering over rectangle
+  if (i == nearestButtonIndex(mouseX, mouseY)) //see if mouse hovering over rectangle
       fill(255,255,0); //if so, fill yellow
   else if (trials.get(trialNum) == i) // see if current button is the target
     fill(0, 255, 255); // if so, fill cyan
@@ -180,4 +180,12 @@ int nearestButtonCenter(int coord) {
   int multiple = coord - margin - (buttonSize / 2);
   int buttonIndex = constrain(Math.round((float)multiple / (padding + buttonSize)), 0, 3);
   return buttonIndex * (padding + buttonSize) + margin + (buttonSize / 2);
+}
+
+int nearestButtonIndex(int coordX, int coordY) {
+  int multipleX = coordX - margin - (buttonSize / 2);
+  int buttonIndexX = constrain(Math.round((float)multipleX / (padding + buttonSize)), 0, 3);
+  int multipleY = coordY - margin - (buttonSize / 2);
+  int buttonIndexY = constrain(Math.round((float)multipleY / (padding + buttonSize)), 0, 3);
+  return 4 * buttonIndexY + buttonIndexX;
 }
