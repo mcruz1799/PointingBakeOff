@@ -143,7 +143,7 @@ void drawButton(int i)
 
   
   if (i == nearestButtonIndex(mouseX, mouseY)) { //see if mouse hovering over rectangle
-      fill(255,255,0); //if so, fill yellow
+      fill(255,0,255); //if so, fill red
       if (trials.get(trialNum) == i)
         fill(0, 255, 0);
   } else if (trials.get(trialNum) == i) // see if current button is the target
