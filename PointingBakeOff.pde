@@ -13,15 +13,21 @@ final int buttonSize = 40; // padding between buttons and also their width/heigh
 ArrayList<Integer> trials = new ArrayList<Integer>(); //contains the order of buttons that activate in the test
 int trialNum = 0; //the current trial number (indexes into trials array above)
 int startTime = 0; // time starts when the first click is captured
+int lastTime = 0;
 int finishTime = 0; //records the time of the final click
 int hits = 0; //number of successful clicks
 int misses = 0; //number of missed clicks
-Robot robot; //initalized in setup 
+int lastX = 0;
+int lastY = 0;
+Robot robot; //initalized in setup
+PrintWriter writer;
 
-int numRepeats = 3; //sets the number of times each button repeats in the test
+int numRepeats = 20; //sets the number of times each button repeats in the test
+int participantId = 1; //1 for Blair, 2 for Matt, 3 for Sewon
 
 void setup()
 {
+  writer = createWriter("trial" + participantId + ".txt"); 
   size(700, 700); // set the size of the window
   //noCursor(); //hides the system cursor if you want
   noStroke(); //turn off all strokes, we're just using fills here (can change this if you want)
@@ -93,6 +99,9 @@ void draw()
 
 void mousePressed() // test to see if hit was in target!
 {
+  int clickTime = millis();
+  int clickX = mouseX;
+  int clickY = mouseY;
   mouseX = nearestButtonCenter(mouseX);
   mouseY = nearestButtonCenter(mouseY);
   if (trialNum >= trials.size()) //if task is over, just return
@@ -109,12 +118,13 @@ void mousePressed() // test to see if hit was in target!
   }
 
   Rectangle bounds = getButtonLocation(trials.get(trialNum));
-
+  boolean didHit = false;
  //check to see if mouse cursor is inside button 
   if ((mouseX > bounds.x && mouseX < bounds.x + bounds.width) && (mouseY > bounds.y && mouseY < bounds.y + bounds.height)) // test to see if hit was within bounds
   {
     System.out.println("HIT! " + trialNum + " " + (millis() - startTime)); // success
     hits++; 
+    didHit = true;
   } 
   else
   {
@@ -122,8 +132,21 @@ void mousePressed() // test to see if hit was in target!
     misses++;
   }
 
+  writer.println(
+    trialNum + "," +
+    participantId + "," +
+    lastX + "," +
+    lastY + "," +
+    (bounds.x+(bounds.width/2)) + "," +
+    (bounds.y+(bounds.height/2)) + ",40," +
+    (float(clickTime - lastTime) / 1000) + "," +
+    int(didHit)
+  );
+  lastX = clickX;
+  lastY = clickY;
+  writer.flush();
   trialNum++; //Increment trial number
-
+  lastTime = millis();
   //in this example code, we move the mouse back to the middle
   //robot.mouseMove(width/2, (height)/2); //on click, move cursor to roughly center of window!
 }  
