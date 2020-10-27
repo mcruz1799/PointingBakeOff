@@ -23,7 +23,7 @@ Robot robot; //initalized in setup
 PrintWriter writer;
 
 int numRepeats = 20; //sets the number of times each button repeats in the test
-int participantId = 1; //1 for Blair, 2 for Matt, 3 for Sewon
+int participantId = 2; //1 for Blair, 2 for Matt, 3 for Sewon
 
 void setup()
 {
